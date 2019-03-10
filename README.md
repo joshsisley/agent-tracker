@@ -4,6 +4,7 @@
 
 ### Setting up the Database
 
+```
 CREATE DATABASE agent_tracker
 USE agent_tracker
 CREATE TABLE agents
@@ -17,6 +18,7 @@ CREATE TABLE agents
   totalHomes      SMALLINT unsigned NOT NULL,           # Number of homes sold
   PRIMARY KEY     (id)
 );
+```
 
 ### Start the Server
 Run the server before starting up the client
