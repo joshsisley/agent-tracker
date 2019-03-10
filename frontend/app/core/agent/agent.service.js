@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: Don't use localhost in http requests. Should be based on env
+
 angular.
   module('core.agent').
   factory('Agent', ['$http',
