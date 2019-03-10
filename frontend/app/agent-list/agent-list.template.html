@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row header">
+    <div class="col-md-4">
+      <input class="form-control" type="text" placeholder="Search by name..." ng-model="$ctrl.searchTerm" />
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-default" ng-click="$ctrl.searchAgents()">Search</button>
+    </div>
+    <div class="col-md-2 col-md-offset-5">
+      <button class="btn btn-primary col-md-12" ng-click="$ctrl.open()">Add Agent</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover agent-table">
+        <thead>
+          <tr>
+            <th scope="col">
+              <a ng-click="$ctrl.orderProp='lastName'; $ctrl.reverseSort = !$ctrl.reverseSort">
+                Last Name
+              </a>
+              <span ng-show="$ctrl.orderProp == 'lastName'">
+                <span ng-show="!$ctrl.reverseSort">^</span><span ng-show="$ctrl.reverseSort">v</span>
+              </span>
+            </th>
+            <th scope="col">
+              <a ng-click="$ctrl.orderProp='firstName'; $ctrl.reverseSort = !$ctrl.reverseSort">
+                First Name
+              </a>
+              <span ng-show="$ctrl.orderProp == 'firstName'">
+                <span ng-show="!$ctrl.reverseSort">^</span><span ng-show="$ctrl.reverseSort">v</span>
+              </span>
+            </th>
+            <th scope="col">
+              <a ng-click="$ctrl.orderProp='status'; $ctrl.reverseSort = !$ctrl.reverseSort">
+                Status
+              </a>
+              <span ng-show="$ctrl.orderProp == 'status'">
+                <span ng-show="!$ctrl.reverseSort">^</span><span ng-show="$ctrl.reverseSort">v</span>
+              </span>
+            </th>
+            <th class="align-right" scope="col">
+              <a ng-click="$ctrl.orderProp='totalHomes'; $ctrl.reverseSort = !$ctrl.reverseSort">
+                Total Homes
+              </a>
+              <span ng-show="$ctrl.orderProp == 'totalHomes'">
+                <span ng-show="!$ctrl.reverseSort">^</span><span ng-show="$ctrl.reverseSort">v</span>
+              </span>
+            </th>
+            <th class="align-right" scope="col">
+              <a ng-click="$ctrl.orderProp='totalSales'; $ctrl.reverseSort = !$ctrl.reverseSort">
+                Total Sales
+              </a>
+              <span ng-show="$ctrl.orderProp == 'totalSales'">
+                <span ng-show="!$ctrl.reverseSort">^</span><span ng-show="$ctrl.reverseSort">v</span>
+              </span>
+            </th>
+            <th class="align-right" scope="col">
+              <a ng-click="$ctrl.orderProp='grossCommission'; $ctrl.reverseSort = !$ctrl.reverseSort">
+                Gross Commission
+              </a>
+              <span ng-show="$ctrl.orderProp == 'grossCommission'">
+                <span ng-show="!$ctrl.reverseSort">^</span><span ng-show="$ctrl.reverseSort">v</span>
+              </span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="agent in $ctrl.agents | orderBy:$ctrl.orderProp:$ctrl.reverseSort">
+            <td class="td-padding">{{agent.lastName}}</td>
+            <td class="td-padding">{{agent.firstName}}</td>
+            <td class="td-padding">{{agent.status}}</td>
+            <td class="align-right td-padding">{{agent.totalHomes}}</td>
+            <td class="align-right td-padding">{{agent.totalSales | currency}}</td>
+            <td class="align-right td-padding">{{agent.grossCommission | currency}}</td>
+            <td>
+              <div class="pull-right" ng-if="!$ctrl.isEdit || ($ctrl.isEdit && $ctrl.selectedId !== agent.id)">
+                <button class="btn btn-sm btn-primary" ng-click="$ctrl.editAgent(agent)">Edit</button>
+                <button class="btn btn-sm btn-danger" ng-click="$ctrl.removeAgent(agent)">Remove</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
